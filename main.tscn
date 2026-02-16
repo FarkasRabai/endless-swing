@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cvc0lbmtaguj7"]
+
+[ext_resource type="Script" uid="uid://cf5fkrnlly3an" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node2D" unique_id=1279827707]
+script = ExtResource("1_ig7tw")
+
+[node name="World" type="Node2D" parent="." unique_id=1785365515]
+
+[node name="Rod" type="Line2D" parent="World" unique_id=232988451]
+width = 6.0
+default_color = Color(0.6593891, 0, 0.09954793, 1)
+antialiased = true
+
+[node name="PivotDot" type="Node2D" parent="World" unique_id=1713089008]
+
+[node name="PivotCircle" type="Sprite2D" parent="World/PivotDot" unique_id=859380933]
+
+[node name="TargetDot" type="Node2D" parent="World" unique_id=1810278314]
+
+[node name="TargetCircle" type="Sprite2D" parent="World/TargetDot" unique_id=1725685762]
+
+[node name="ToleranceRing" type="Line2D" parent="World/TargetDot" unique_id=1088548224]
+
+[node name="DotsContainer" type="Node2D" parent="World" unique_id=1435350422]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=571915795]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1318358773]
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=1196424806]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
