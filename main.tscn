@@ -1,9 +1,31 @@
 [gd_scene format=3 uid="uid://cvc0lbmtaguj7"]
 
-[ext_resource type="Script" uid="uid://cf5fkrnlly3an" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://x0kip5ag1chg" path="res://scripts/game.gd" id="2_lquwl"]
+[ext_resource type="Script" uid="uid://dkqhfuy5owqil" path="res://scripts/track.gd" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://bvsr2acxund2a" path="res://scripts/swing_rod.gd" id="4_272bh"]
+[ext_resource type="Script" uid="uid://dfdtg3g12mq3o" path="res://scripts/difficulty.gd" id="5_5vw27"]
 
 [node name="Main" type="Node2D" unique_id=1279827707]
-script = ExtResource("1_ig7tw")
+
+[node name="Game" type="Node" parent="." unique_id=1748964666 node_paths=PackedStringArray("track", "rod_logic", "difficulty", "rod_line", "target_dot_node", "tolerance_ring", "camera", "score_label")]
+script = ExtResource("2_lquwl")
+track = NodePath("Track")
+rod_logic = NodePath("RodLogic")
+difficulty = NodePath("Difficulty")
+rod_line = NodePath("../World/Rod")
+target_dot_node = NodePath("../World/TargetDot")
+tolerance_ring = NodePath("../World/TargetDot/ToleranceRing")
+camera = NodePath("../Camera2D")
+score_label = NodePath("../UI/ScoreLabel")
+
+[node name="Track" type="Node" parent="Game" unique_id=913784866]
+script = ExtResource("3_7mycd")
+
+[node name="RodLogic" type="Node" parent="Game" unique_id=1186446289]
+script = ExtResource("4_272bh")
+
+[node name="Difficulty" type="Node" parent="Game" unique_id=1593385795]
+script = ExtResource("5_5vw27")
 
 [node name="World" type="Node2D" parent="." unique_id=1785365515]
 
