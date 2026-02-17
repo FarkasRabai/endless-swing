@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://doq65a2a7dn3p"]
+
+[ext_resource type="Script" uid="uid://x0kip5ag1chg" path="res://scripts/game.gd" id="1_hlcyj"]
+[ext_resource type="Script" uid="uid://dkqhfuy5owqil" path="res://scripts/track.gd" id="2_m4gmu"]
+[ext_resource type="Script" uid="uid://bvsr2acxund2a" path="res://scripts/swing_rod.gd" id="3_pgj06"]
+[ext_resource type="Script" uid="uid://dfdtg3g12mq3o" path="res://scripts/difficulty.gd" id="4_x6ama"]
+[ext_resource type="Script" uid="uid://br7x0x0eq6qfr" path="res://scripts/world_draw.gd" id="5_cc5tk"]
+[ext_resource type="Script" uid="uid://dptca2vv0obtl" path="res://scripts/end_screen.gd" id="6_o0kdm"]
+
+[node name="Main" type="Node2D" unique_id=1279827707]
+
+[node name="Game" type="Node" parent="." unique_id=1748964666 node_paths=PackedStringArray("track", "rod_logic", "difficulty", "rod_line", "target_dot_node", "tolerance_ring", "camera", "score_label", "end_screen")]
+script = ExtResource("1_hlcyj")
+track = NodePath("Track")
+rod_logic = NodePath("RodLogic")
+difficulty = NodePath("Difficulty")
+rod_line = NodePath("../World/Rod")
+target_dot_node = NodePath("../World/TargetDot")
+tolerance_ring = NodePath("../World/TargetDot/ToleranceRing")
+camera = NodePath("../Camera2D")
+score_label = NodePath("../UI/UIRoot/ScoreLabel")
+end_screen = NodePath("../UI/UIRoot/EndScreen")
+cam_lerp = 0.04
+
+[node name="Track" type="Node" parent="Game" unique_id=913784866]
+script = ExtResource("2_m4gmu")
+
+[node name="RodLogic" type="Node" parent="Game" unique_id=1186446289]
+script = ExtResource("3_pgj06")
+
+[node name="Difficulty" type="Node" parent="Game" unique_id=1593385795]
+script = ExtResource("4_x6ama")
+
+[node name="World" type="Node2D" parent="." unique_id=1785365515]
+
+[node name="Rod" type="Line2D" parent="World" unique_id=232988451]
+width = 6.0
+default_color = Color(0.6593891, 0, 0.09954793, 1)
+antialiased = true
+
+[node name="PivotDot" type="Node2D" parent="World" unique_id=1713089008]
+
+[node name="PivotCircle" type="Sprite2D" parent="World/PivotDot" unique_id=859380933]
+
+[node name="TargetDot" type="Node2D" parent="World" unique_id=1810278314]
+
+[node name="TargetCircle" type="Sprite2D" parent="World/TargetDot" unique_id=1725685762]
+
+[node name="ToleranceRing" type="Line2D" parent="World/TargetDot" unique_id=1088548224]
+
+[node name="DotsContainer" type="Node2D" parent="World" unique_id=1435350422]
+
+[node name="WorldDraw" type="Node2D" parent="World" unique_id=980355436 node_paths=PackedStringArray("track", "difficulty")]
+script = ExtResource("5_cc5tk")
+track = NodePath("../../Game/Track")
+difficulty = NodePath("../../Game/Difficulty")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=571915795]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1318358773]
+
+[node name="UIRoot" type="Control" parent="UI" unique_id=1100563539]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="UI/UIRoot" unique_id=1196424806]
+layout_mode = 0
+offset_right = 91.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+
+[node name="EndScreen" type="Control" parent="UI/UIRoot" unique_id=755081603]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_o0kdm")
+dim_path = NodePath("Dim")
+card_path = NodePath("Panel")
+title_path = NodePath("Panel/VBox/Title")
+score_value_path = NodePath("Panel/VBox/Score")
+best_value_path = NodePath("Panel/VBox/Best")
+retry_button_path = NodePath("Panel/VBox/Buttons/Retry")
+quit_button_path = NodePath("Panel/VBox/Buttons/Quit")
+
+[node name="Dim" type="ColorRect" parent="UI/UIRoot/EndScreen" unique_id=759363925]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="PanelContainer" parent="UI/UIRoot/EndScreen" unique_id=1792628544]
+custom_minimum_size = Vector2(520, 420)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/UIRoot/EndScreen/Panel" unique_id=981467521]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/UIRoot/EndScreen/Panel/VBox" unique_id=167282449]
+layout_mode = 2
+text = "GAME OVER"
+
+[node name="Score" type="Label" parent="UI/UIRoot/EndScreen/Panel/VBox" unique_id=568252701]
+layout_mode = 2
+
+[node name="Best" type="Label" parent="UI/UIRoot/EndScreen/Panel/VBox" unique_id=860211857]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="UI/UIRoot/EndScreen/Panel/VBox" unique_id=56568039]
+layout_mode = 2
+
+[node name="RetryHint" type="Label" parent="UI/UIRoot/EndScreen/Panel/VBox" unique_id=1923802538]
+layout_mode = 2
+text = "Tap anywhere or Press Retry"
+
+[node name="Buttons" type="HBoxContainer" parent="UI/UIRoot/EndScreen/Panel/VBox" unique_id=1448989638]
+layout_mode = 2
+
+[node name="Retry" type="Button" parent="UI/UIRoot/EndScreen/Panel/VBox/Buttons" unique_id=1690163865]
+layout_mode = 2
+text = "Retry"
+
+[node name="Quit" type="Button" parent="UI/UIRoot/EndScreen/Panel/VBox/Buttons" unique_id=73930181]
+layout_mode = 2
+text = "QUIT"

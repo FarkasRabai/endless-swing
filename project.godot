@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Endless swing"
-run/main_scene="res://main.tscn"
+run/main_scene="uid://doq65a2a7dn3p"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
