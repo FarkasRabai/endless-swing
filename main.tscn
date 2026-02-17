@@ -20,6 +20,7 @@ tolerance_ring = NodePath("../World/TargetDot/ToleranceRing")
 camera = NodePath("../Camera2D")
 score_label = NodePath("../UI/UIRoot/ScoreLabel")
 end_screen = NodePath("../UI/UIRoot/EndScreen")
+cam_lerp = 0.04
 
 [node name="Track" type="Node" parent="Game" unique_id=913784866]
 script = ExtResource("3_7mycd")
@@ -83,6 +84,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_7mycd")
+dim_path = NodePath("Dim")
+card_path = NodePath("Panel")
+title_path = NodePath("Panel/VBox/Title")
+score_value_path = NodePath("Panel/VBox/Score")
+best_value_path = NodePath("Panel/VBox/Best")
+retry_button_path = NodePath("Panel/VBox/Buttons/Retry")
+quit_button_path = NodePath("Panel/VBox/Buttons/Quit")
 
 [node name="Dim" type="ColorRect" parent="UI/UIRoot/EndScreen" unique_id=759363925]
 layout_mode = 1

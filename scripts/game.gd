@@ -99,8 +99,11 @@ func _process(delta: float) -> void:
 	_update_rod()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	# NOTE: EndScreen consumes input when visible, so taps won't fall through
+func _input(event: InputEvent) -> void:
+	# If end screen is visible, let it handle taps (it already does tap-to-retry)
+	if end_screen and end_screen.visible:
+		return
+
 	if event is InputEventScreenTouch and event.pressed:
 		_tap()
 	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
