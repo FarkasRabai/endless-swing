@@ -9,7 +9,6 @@ class_name WorldDraw
 @export var future_count: int = 8
 
 func _process(_delta: float) -> void:
-	# redraw every frame (simple + reliable)
 	queue_redraw()
 
 func _draw() -> void:
@@ -28,11 +27,11 @@ func _draw() -> void:
 	# Pivot dot (white)
 	draw_circle(pivot, pivot_radius, Color(1, 1, 1, 0.95))
 
-	# Target dot (pink) – size changes with difficulty
+	# Target dot (pink)
 	draw_circle(target, difficulty.target_dot_r, Color(1.0, 0.23, 0.83, 0.95))
 
 	# Faint future dots
-	var max_i := min(p_i + 2 + future_count, track.dots.size())
+	var max_i: int = mini(p_i + 2 + future_count, track.dots.size())
 	for i in range(p_i + 2, max_i):
-		var a := clampf(1.0 - float(i - p_i) * 0.12, 0.18, 0.6)
+		var a: float = clampf(1.0 - float(i - p_i) * 0.12, 0.18, 0.6)
 		draw_circle(track.dots[i], future_radius, Color(1, 1, 1, a))
